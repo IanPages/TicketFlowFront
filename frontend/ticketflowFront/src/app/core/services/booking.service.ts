@@ -4,7 +4,7 @@ import { BookingDTO } from '../interfaces/booking.interface';
 
 @Injectable({ providedIn: 'root' })
 export class BookingService {
-  private apiUrl = 'http://localhost:8080/api/bookings';
+  private apiUrl = 'https://creative-youth-production.up.railway.app/api/bookings';
 
   constructor(private http: HttpClient) {}
 

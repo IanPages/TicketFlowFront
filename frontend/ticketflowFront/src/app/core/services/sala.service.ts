@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class SalaService {
-  private apiUrl = 'http://localhost:8080/api/salas';
+  private apiUrl = 'https://creative-youth-production.up.railway.app/api/salas';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class EventService {
-  private baseUrl = 'http://localhost:8080/api/events';
+  private baseUrl = 'https://creative-youth-production.up.railway.app/api/events';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

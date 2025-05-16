@@ -16,7 +16,7 @@ interface DecodedToken {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'https://creative-youth-production.up.railway.app/api';
 
   constructor(private http: HttpClient, private router: Router, private notificationService: NotificationService) {}
 
