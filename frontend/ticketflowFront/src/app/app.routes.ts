@@ -32,9 +32,9 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'register', component: RegisterComponent},
     { path: 'login', component: LoginComponent},
-    { path: 'details/:id', component: DetailsComponent},
+    { path: 'details/:id', component: DetailsComponent,data: { renderMode: 'server' }},
     { path: 'eventos', component: CatalogComponent, canActivate: [AuthGuard]}, 
-    { path: 'tickets/:id', component: PurchaseComponent, canActivate: [AuthGuard]},
+    { path: 'tickets/:id', component: PurchaseComponent, canActivate: [AuthGuard],data: { renderMode: 'server' }},
     { path: 'seleccionar-seats', component: SeleccionarSeatsComponent, canActivate: [AuthGuard]},
     { path: 'payment-success', component: PaymentSuccessfulComponent, canActivate: [AuthGuard]},
     { path: 'payment-cancel', component: PaymentCancelComponent, canActivate: [AuthGuard]},
@@ -43,10 +43,10 @@ export const routes: Routes = [
             {path: '', component: DashboardComponent},
             {path: 'events', component: EventosComponent},
             {path: 'events/add', component: EventoAddComponent },
-            {path: 'events/edit/:id', component: EventoEditComponent },
+            {path: 'events/edit/:id', component: EventoEditComponent,data: { renderMode: 'server' } },
             {path: 'salas', component: ListComponent},
             {path: 'salas/add', component: SalaAddComponent },
-            {path: 'salas/edit/:id', component: SalaEditComponent }
+            {path: 'salas/edit/:id', component: SalaEditComponent,data: { renderMode: 'server' } }
         ]
     },
     {path: 'sobre-nosotros', component: AboutusComponent},
