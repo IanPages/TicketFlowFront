@@ -1,0 +1,50 @@
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <h1 class="text-3xl font-bold text-purple-700 mb-8">Mis Reservas</h1>
+        <div *ngIf="loading" class="text-center py-8">
+            <div class="animate-spin h-12 w-12 border-4 border-purple-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p class="text-gray-600">Cargando reservas...</p>
+        </div>
+        <div *ngIf="error" class="bg-red-100 text-red-700 p-4 rounded-lg mb-6">
+            {{ error }}
+        </div>
+        <div *ngIf="!loading && !error && bookings.length === 0" class="text-center py-12">
+            <mat-icon class="text-gray-400 text-6xl mb-4">import_contacts</mat-icon>
+            <p class="text-xl text-gray-600 mb-4">No tienes reservas activas</p>
+            <button routerLink="/eventos" 
+                    class="bg-purple-700 text-white px-6 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                Ver eventos disponibles
+            </button>
+        </div>
+
+        <div *ngIf="!loading && !error && bookings.length > 0" class="space-y-6">
+            <div *ngFor="let booking of bookings" 
+                class="bg-white rounded-lg shadow-md p-6 transition-transform hover:shadow-lg">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">{{booking.event.name}}</h3>
+                        <p class="text-gray-600 flex items-center gap-2">
+                            <mat-icon class="text-gray-400">event</mat-icon>
+                            {{booking.event.date | date:'fullDate'}}
+                        </p>
+                        <p class="text-gray-600 flex items-center gap-2">
+                            <mat-icon class="text-gray-400">location_on</mat-icon>
+                            {{booking.event.location}}
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <div class="bg-purple-100 text-purple-700 px-4 py-2 rounded-full mb-2">
+                            {{booking.vip ? 'Entrada VIP' : 'Entrada Normal'}}
+                        </div>
+                        <p class="text-gray-600">
+                            Cantidad: <span class="font-semibold">{{booking.quantity}}</span>
+                        </p>
+                        <div *ngIf="booking.seats?.length" class="mt-2 text-sm text-gray-500">
+                            <p>Asientos: {{booking.seats.join(', ')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

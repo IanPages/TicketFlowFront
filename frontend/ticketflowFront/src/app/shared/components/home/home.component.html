@@ -1,0 +1,99 @@
+<main class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold text-purple-700 mb-12 text-center">Eventos Disponibles</h2>
+    <div *ngIf="!limitedEvents?.length" class="text-center py-12">
+        <mat-icon class="text-gray-500 text-6xl mb-4">speaker_notes_off</mat-icon>
+        <p class="text-xl text-gray-600">No hay eventos disponibles en este momento</p>
+    </div>
+    <ng-container *ngIf="limitedEvents?.length">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
+            <div *ngFor="let event of limitedEvents" 
+                class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 flex flex-col h-full">
+                <div class="relative">
+                    <img [src]="event.image1" 
+                        [alt]="event.name"
+                        class="w-full h-48 object-cover">
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 line-clamp-2">{{event.name}}</h3>
+                    <p class="text-gray-600 mb-2 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span class="line-clamp-1">{{event.location}}</span>
+                    </p>
+                    <div class="flex justify-between items-center mb-4 mt-auto">
+                        <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm truncate max-w-[150px]">
+                            {{event.genre.name}}
+                        </span>
+                        <span class="text-gray-600 text-sm flex-shrink-0">
+                            {{event.date | date:'mediumDate'}}
+                        </span>
+                    </div>
+                    <button [routerLink]="['/details', event.id]"
+                            class="w-full bg-purple-700 text-white py-2 rounded-md hover:bg-purple-600 transition-colors">
+                        Ver detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-14">
+            <button routerLink="/eventos" 
+                    class="bg-purple-700 text-white px-6 py-2 rounded-md hover:bg-purple-600 transition-colors">
+                Ver todos los eventos
+            </button>
+        </div>
+    </ng-container>
+    <section class="mt-16 mb-16">
+    <div class="max-w-4xl mx-auto text-center px-4">
+        <h2 class="text-3xl font-bold text-purple-700 mb-6">Tu destino para el entretenimiento</h2>
+        <div class="space-y-4 text-gray-600">
+            <p class="text-lg">
+                En TicketFlow, nos apasiona conectar a las personas con experiencias inolvidables. 
+                Desde conciertos electrizantes hasta espectáculos teatrales cautivadores, 
+                ofrecemos una amplia gama de eventos para todos los gustos.
+            </p>
+            <p class="text-lg">
+                Nuestra plataforma combina la facilidad de uso con la seguridad más avanzada, 
+                permitiéndote reservar tus entradas con total confianza. Ya sea un evento íntimo 
+                en un teatro local o un gran concierto en un estadio, estamos aquí para hacer que 
+                cada experiencia sea especial.
+            </p>
+        </div>
+    </div>
+    </section>
+    <section class="mt-20">
+        <h2 class="text-3xl font-bold text-purple-700 mb-12 text-center">¿Por qué elegirnos?</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                    <mat-icon class="text-3xl text-purple-700">shopping_cart</mat-icon>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Compra Fácil</h3>
+                <p class="text-gray-600">Proceso de compra simple y seguro en pocos clics.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                    <mat-icon class="text-3xl text-purple-700">payments</mat-icon>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Mejores Precios</h3>
+                <p class="text-gray-600">Garantizamos los precios más competitivos del mercado.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                    <mat-icon class="text-3xl text-purple-700">support_agent</mat-icon>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Atención 24/7</h3>
+                <p class="text-gray-600">Soporte al cliente disponible en cualquier momento.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow">
+                <div class="bg-purple-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                    <mat-icon class="text-3xl text-purple-700">security</mat-icon>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">100% Seguro</h3>
+                <p class="text-gray-600">Transacciones cifradas y garantía de compra segura.</p>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,33 @@
+<div class="min-h-screen bg-gray-50 py-4">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="flex border-b border-gray-200">
+                <button [class.bg-purple-700]="activeTab === 0"
+                        [class.text-white]="activeTab === 0"
+                        [class.bg-gray-100]="activeTab !== 0"
+                        [class.text-gray-700]="activeTab !== 0"
+                        (click)="setActiveTab(0)"
+                        class="flex-1 py-4 px-6 text-center font-medium transition-colors duration-200 focus:outline-none">
+                    Eventos
+                </button>
+                <button [class.bg-purple-700]="activeTab === 1"
+                        [class.text-white]="activeTab === 1"
+                        [class.bg-gray-100]="activeTab !== 1"
+                        [class.text-gray-700]="activeTab !== 1"
+                        (click)="setActiveTab(1)"
+                        class="flex-1 py-4 px-6 text-center font-medium transition-colors duration-200 focus:outline-none">
+                    Salas
+                </button>
+            </div>
+
+            <div class="p-4">
+                <div [ngClass]="{'hidden': activeTab !== 0}">
+                    <app-eventos></app-eventos>
+                </div>
+                <div [ngClass]="{'hidden': activeTab !== 1}">
+                    <app-list></app-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

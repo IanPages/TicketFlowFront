@@ -1,0 +1,86 @@
+<div class="flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8 mb-5">
+    <div class="max-w-md w-full space-y-8 mt-5 mb-5">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-2 space-y-6 bg-gray-200 p-8 rounded-lg shadow-md">
+            <div class="rounded-md shadow-sm -space-y-px">
+                <h2 class="mt-1 text-2xl font-extrabold text-purple-700 mb-5">Registrar cuenta</h2>
+                 <div *ngIf="error" 
+                class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                </svg>
+                {{ error }}
+            </div>
+                <div class="mb-6">
+                    <label for="email" class="label-primary">Correo electrónico</label>
+                    <input id="email" 
+                           type="email" 
+                           formControlName="email" 
+                           class="input-primary"
+                           placeholder="ejemplo@correo.com">
+                    <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" 
+                         class="text-red-600 text-sm mt-1">
+                        <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                            El correo electrónico es requerido
+                        </div>
+                        <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                            Introduce un correo electrónico válido
+                        </div>
+                        <div *ngIf="registerForm.get('email')?.errors?.['minlength']">
+                            El correo debe tener al menos 4 caracteres
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="password" class="label-primary">Contraseña</label>
+                    <input id="password" 
+                        type="password" 
+                        formControlName="password" 
+                        class="input-primary"
+                        placeholder="******">
+                    <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" 
+                        class="text-red-600 text-sm mt-1">
+                        <div *ngIf="registerForm.get('password')?.errors?.['required']">
+                            La contraseña es requerida
+                        </div>
+                        <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                            La contraseña debe tener al menos 6 caracteres
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="confirmPassword" class="label-primary">Confirmar contraseña</label>
+                    <input id="confirmPassword" 
+                        type="password" 
+                        formControlName="confirmPassword" 
+                        class="input-primary"
+                        placeholder="******">
+                    <div *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched" 
+                        class="text-red-600 text-sm mt-1">
+                        Las contraseñas no coinciden
+                    </div>
+                </div>
+            </div>
+
+        <div>
+                <button type="submit" 
+                    [disabled]="registerForm.invalid || loading"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-white transition-colors duration-200 ease-in-out"
+                    [ngClass]="{
+                        'bg-purple-700 hover:bg-purple-600': !loading && registerForm.valid,
+                        'bg-gray-400 cursor-not-allowed': loading || registerForm.invalid
+                    }">
+                <span *ngIf="!loading">{{ registerForm.valid ? 'Registrarse' : 'Complete el registro' }}</span>
+                <span *ngIf="loading" class="flex items-center justify-center">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Registrando...
+            </span>
+        </button>
+            </div>
+        </form>
+    </div>
+</div>
