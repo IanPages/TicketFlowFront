@@ -31,7 +31,7 @@ export class TicketsComponent implements OnInit {
   ) {}
 
   onContinue() {
-    if (!this.event) return;
+  if (!this.event || !this.selectedTicketType || this.quantity > 8 || this.quantity < 1) return;
 
     if (this.event.sala) {
       this.router.navigate(['/seleccionar-seats'], {
@@ -59,7 +59,6 @@ export class TicketsComponent implements OnInit {
       this.loadEvent(id);
     });
 
-    // Initialize with default ticket type based on event type
     if (this.event?.sala) {
       this.selectedTicketType = 'normal';
     } else {
@@ -95,4 +94,24 @@ export class TicketsComponent implements OnInit {
   getTotalPrice(): number {
     return this.getTicketPrice() * this.quantity;
   }
+
+  validateQuantity() {
+    if (this.quantity > 8) {
+        this.quantity = 8;
+    } else if (this.quantity < 1) {
+        this.quantity = 1;
+    }
+  }
+  getButtonText(): string {
+    if (!this.selectedTicketType) {
+        return 'Selecciona un tipo de entrada';
+    }
+    if (this.quantity > 8) {
+        return 'Máximo 8 entradas permitidas';
+    }
+    if (this.quantity < 1) {
+        return 'Cantidad no válida';
+    }
+    return 'Continuar';
+  }    
 }
