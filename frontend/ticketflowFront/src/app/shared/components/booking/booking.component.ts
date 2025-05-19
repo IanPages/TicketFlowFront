@@ -26,7 +26,9 @@ export class BookingComponent implements OnInit {
   ngOnInit() {
     this.userId = this.authService.getUserId();
     if (this.userId) {
+      
       this.loadUserBookings();
+
     } else {
       this.error = 'Usuario no autenticado';
     }
@@ -38,8 +40,10 @@ export class BookingComponent implements OnInit {
     this.loading = true;
     this.bookingService.getUserBookings(this.userId).subscribe({
       next: (bookings) => {
-        this.bookings = bookings;
-        this.loading = false;
+      this.bookings = bookings.sort((a, b) => {
+        return b.id - a.id;
+      });
+      this.loading = false;
       },
       error: (error) => {
         this.error = 'Error al cargar las reservas';
