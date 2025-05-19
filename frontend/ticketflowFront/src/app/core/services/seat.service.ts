@@ -4,7 +4,7 @@ import { Seat } from '../interfaces/seat.interface';
 
 @Injectable({ providedIn: 'root' })
 export class SeatService {
-  private apiUrl = 'https://creative-youth-production.up.railway.app/api/seats';
+  private apiUrl = 'https://database-ianpages-b90a5aac.koyeb.app/api/seats';
 
   constructor(private http: HttpClient) {}
 

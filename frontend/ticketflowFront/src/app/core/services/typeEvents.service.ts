@@ -7,7 +7,7 @@ import { TypeEvent } from '../interfaces/typeEvent.interface';
   providedIn: 'root'
 })
 export class TypeEventsService {
-  private apiUrl = 'https://creative-youth-production.up.railway.app/api/genreEvents';
+  private apiUrl = 'https://database-ianpages-b90a5aac.koyeb.app/api/genreEvents';
 
   constructor(private http: HttpClient) {}
 

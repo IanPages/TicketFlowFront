@@ -4,7 +4,7 @@ import { BookingDTO } from '../interfaces/booking.interface';
 
 @Injectable({ providedIn: 'root' })
 export class BookingService {
-  private apiUrl = 'https://creative-youth-production.up.railway.app/api/bookings';
+  private apiUrl = 'https://database-ianpages-b90a5aac.koyeb.app/api/bookings';
 
   constructor(private http: HttpClient) {}
 
@@ -13,11 +13,13 @@ export class BookingService {
     this.http.post<{ url: string }>(this.apiUrl + '/checkout', bookingDTO)
       .subscribe({
         next: (response) => {
+          console.log(response);
           const checkoutUrl = response.url; // Accede a la URL correctamente
           window.location.href = checkoutUrl; // Redirige a Stripe
         },
         error: (err) => {
           console.error('Error creating booking', err);
+          console.log(err);
           alert('Error al procesar la reserva');
         }
       });
