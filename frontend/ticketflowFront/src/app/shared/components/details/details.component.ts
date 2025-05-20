@@ -31,7 +31,6 @@ export class DetailsComponent implements OnInit {
       const id = Number(params['id']);
       this.loadEvent(id);
     });
-    this.notify.success("HAS CARGADO CORRECTAMENTE")
   }
 
   private loadEvent(id: number) {
@@ -42,7 +41,6 @@ export class DetailsComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading event:', error);
         this.error = true;
         this.loading = false;
       }

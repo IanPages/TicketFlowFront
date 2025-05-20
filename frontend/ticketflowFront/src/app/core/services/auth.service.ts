@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {jwtDecode} from 'jwt-decode';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { NotificationService } from './notification.service';
 
@@ -61,7 +61,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.notificationService.info("Has hecho logout")
+    this.notificationService.info("Has cerrado sesión")
     this.router.navigate(['/login']);
   }
 
@@ -76,7 +76,6 @@ export class AuthService {
     try {
       return jwtDecode<DecodedToken>(token);
     } catch (error) {
-      console.error('Error decoding token:', error);
       return null;
     }
   }
@@ -100,7 +99,6 @@ export class AuthService {
     const decodedToken = this.getDecodedToken();
     if (!decodedToken) return true;
     
-    // exp is in seconds, Date.now() is in milliseconds
     return (decodedToken.exp * 1000) < Date.now();
   }
 

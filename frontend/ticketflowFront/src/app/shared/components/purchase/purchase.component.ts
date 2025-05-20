@@ -36,7 +36,6 @@ export class PurchaseComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading event:', error);
         this.error = true;
         this.loading = false;
       }
